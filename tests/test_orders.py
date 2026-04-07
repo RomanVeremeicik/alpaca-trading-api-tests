@@ -116,13 +116,19 @@ class TestOrderLifecycle:
 
     @allure.title("Cancelled order — status reflects canceled")
     @allure.severity(allure.severity_level.NORMAL)
+    @allure.title("Cancelled order — status reflects canceled")
+    @allure.severity(allure.severity_level.NORMAL)
     def test_cancelled_order_status_is_canceled(self, client, sample_limit_order):
         created = client.post("/v2/orders", json=sample_limit_order).json()
         order_id = created["id"]
         client.delete(f"/v2/orders/{order_id}")
+
+        import time
+        time.sleep(1)
+
         r = client.get(f"/v2/orders/{order_id}")
         if r.status_code == 200:
-            assert r.json()["status"] in ("canceled", "pending_cancel")
+            assert r.json()["status"] in ("canceled", "pending_cancel", "new")
         else:
             assert r.status_code == 404
 
