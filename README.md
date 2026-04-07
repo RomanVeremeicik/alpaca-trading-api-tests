@@ -91,7 +91,16 @@ pytest -m "not websocket"
 ```
 
 ---
+## Performance Testing (k6)
 
+Install k6: https://k6.io/docs/getting-started/installation/
+```bash
+# Smoke test
+k6 run -e ALPACA_API_KEY=$ALPACA_API_KEY -e ALPACA_SECRET_KEY=$ALPACA_SECRET_KEY performance/smoke_test.js
+
+# Load test
+k6 run -e ALPACA_API_KEY=$ALPACA_API_KEY -e ALPACA_SECRET_KEY=$ALPACA_SECRET_KEY performance/load_test.js
+```
 ## Key test patterns demonstrated
 
 **Schema validation** — every response is checked for required fields and types, not just status codes:
