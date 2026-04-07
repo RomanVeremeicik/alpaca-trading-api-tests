@@ -4,8 +4,8 @@ services:
   tests:
     build: .
     environment:
-      - ALPACA_API_KEY=PKNQJLUDD7WTJ5HZB4YSN27DZA
-      - ALPACA_SECRET_KEY=5UAsZxtuFdK9uCbsoqBuEHmMStFLbqjqerkEmCXvqiTN
+      - ALPACA_API_KEY=${ALPACA_API_KEY}
+      - ALPACA_SECRET_KEY=${ALPACA_SECRET_KEY}
     volumes:
       - ./allure-results:/app/allure-results
 
