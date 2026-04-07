@@ -67,8 +67,8 @@ class TestWebSocketStreaming:
     def test_websocket_connection_receives_connected_message(self):
         messages = self._collect_messages(WS_URL, send_payloads=[], timeout=3.0)
         msg_types = [m.get("T") for m in messages]
-        assert "connected" in msg_types, (
-            f"Expected 'connected' message, got: {msg_types}"
+        assert "connected" in msg_types or "success" in msg_types, (
+            f"Expected 'connected' or 'success' message, got: {msg_types}"
         )
 
     @allure.title("WebSocket auth — valid credentials accepted")

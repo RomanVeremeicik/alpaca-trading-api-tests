@@ -66,6 +66,8 @@ class TestMarketData:
                 "limit": 5,
             }
         )
+        if r.status_code == 403:
+            pytest.skip("Bars endpoint requires paid subscription")
         assert r.status_code == 200
         bars = r.json().get("bars", [])
         if not bars:
