@@ -144,3 +144,23 @@ class TestOrderLifecycle:
         r = client.get("/v2/orders")
         assert r.status_code == 200
         assert isinstance(r.json(), list)
+
+    @allure.title("Idempotency — duplicate order creates separate entry")
+    @allure.description(
+        "Sending identical orders twice creates two distinct orders — Alpaca does not deduplicate by default.")
+    @allure.severity(allure.severity_level.CRITICAL)
+    def test_duplicate_order_creates_separate_entry(self, client, cleanup_orders):
+        payload = {
+            "symbol": "AAPL",
+            "qty": "1",
+            "side": "buy",
+            "type": "limit",
+            "limit_price": "1.00",
+            "time_in_force": "gtc",
+        }
+        r1 = client.post("/v2/orders", json=payload)
+        r2 = client.post("/v2/orders", json=payload)
+
+        assert r1.status_code == 200
+        assert r2.status_code == 200
+        assert r1.json()["id"] != r2.json()["id"], "Duplicate orders must have different IDs"
