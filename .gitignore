@@ -1,0 +1,28 @@
+# Environment
+.env
+*.env
+
+# Allure
+allure-results/
+allure-report/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# PyCharm
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db.env
+.idea/
+__pycache__/
+allure-results/
