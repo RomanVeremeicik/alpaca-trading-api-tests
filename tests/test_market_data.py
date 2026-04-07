@@ -111,3 +111,15 @@ class TestMarketData:
         assert r.status_code in (400, 404, 422), (
             f"Expected 4xx for invalid symbol, got {r.status_code}"
         )
+
+    @allure.title("Latest quote — multiple symbols return valid data")
+    @allure.description("Parametrized check: major symbols all return valid quotes.")
+    @allure.severity(allure.severity_level.NORMAL)
+    @pytest.mark.parametrize("symbol", ["AAPL", "TSLA", "MSFT", "GOOGL"])
+    def test_multiple_symbols_return_quotes(self, data_headers, symbol):
+        r = requests.get(
+            f"{DATA_URL}/v2/stocks/{symbol}/quotes/latest",
+            headers=data_headers
+        )
+        assert r.status_code == 200, f"{symbol} returned {r.status_code}"
+        assert "quote" in r.json(), f"{symbol} missing 'quote' field"
