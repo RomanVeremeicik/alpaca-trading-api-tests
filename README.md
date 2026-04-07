@@ -139,6 +139,9 @@ def cleanup_orders(client):
 - Stock market data tests may skip on weekends/holidays if no bars are returned
 - `pytest.skip()` is used gracefully for market-hours-dependent scenarios
 
+# Alpaca Trading API — Test Suite
+
+![CI](https://github.com/RomanVeremeicik/alpaca-trading-api-tests/actions/workflows/tests.yml/badge.svg)
 ---
 
 ## Author
