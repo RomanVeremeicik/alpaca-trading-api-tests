@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  tests:
+    build: .
+    environment:
+      - ALPACA_API_KEY=PKNQJLUDD7WTJ5HZB4YSN27DZA
+      - ALPACA_SECRET_KEY=5UAsZxtuFdK9uCbsoqBuEHmMStFLbqjqerkEmCXvqiTN
+    volumes:
+      - ./allure-results:/app/allure-results
+
