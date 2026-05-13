@@ -1,9 +1,9 @@
 name: Performance Tests
 
 on:
-  workflow_dispatch:  # только ручной запуск
+  workflow_dispatch:  # manual run
   schedule:
-    - cron: '0 9 * * 1'  # каждый понедельник в 9:00
+    - cron: '0 9 * * 1'  
 
 jobs:
   performance:
